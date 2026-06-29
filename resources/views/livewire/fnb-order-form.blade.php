@@ -5,7 +5,7 @@
             <h3 class="text-sm font-semibold text-gray-700 mb-4">Pilih Menu</h3>
             <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
                 @foreach($menus as $menu)
-                    <button wire:click="addToCart({{ $menu->menu_id }}, '{{ $menu->name }}', {{ $menu->price }})" 
+                    <button wire:click="addToCart({{ $menu->menu_id }}, '{{ $menu->menu_name }}', {{ $menu->price }})" 
                          class="border border-gray-200 hover:border-blue-400 rounded-lg p-3 transition-all hover:shadow-sm text-left bg-white group">
                         <div class="flex items-center gap-2 mb-2">
                             <div class="w-8 h-8 bg-gray-100 rounded-md flex items-center justify-center text-gray-400 group-hover:bg-blue-50 group-hover:text-blue-500 transition-colors">
@@ -13,7 +13,7 @@
                             </div>
                             <span class="px-1.5 py-0.5 text-[10px] font-medium text-gray-400 bg-gray-50 rounded capitalize">{{ $menu->category }}</span>
                         </div>
-                        <h4 class="text-sm font-medium text-gray-800">{{ $menu->name }}</h4>
+                        <h4 class="text-sm font-medium text-gray-800">{{ $menu->menu_name }}</h4>
                         <p class="text-xs font-semibold text-blue-600 mt-1">Rp {{ number_format($menu->price, 0, ',', '.') }}</p>
                     </button>
                 @endforeach

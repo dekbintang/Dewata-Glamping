@@ -20,7 +20,7 @@
             @foreach($menus as $i => $menu)
                 <tr class="hover:bg-gray-50 transition-colors">
                     <td class="px-5 py-3 text-gray-400 text-xs">{{ $i + 1 }}</td>
-                    <td class="px-5 py-3 font-medium text-gray-800">{{ $menu->name }}</td>
+                    <td class="px-5 py-3 font-medium text-gray-800">{{ $menu->menu_name }}</td>
                     <td class="px-5 py-3 text-gray-600 capitalize">{{ $menu->category }}</td>
                     <td class="px-5 py-3 font-medium text-gray-800">Rp {{ number_format($menu->price, 0, ',', '.') }}</td>
                     <td class="px-5 py-3">

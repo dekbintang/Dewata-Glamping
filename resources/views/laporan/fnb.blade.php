@@ -10,7 +10,7 @@
     </div>
 
     @php
-        $orders = \App\Models\FnbOrder::with(['reservation.customer', 'details.menu'])->latest()->paginate(15);
+        $orders = \App\Models\FnbOrder::with(['reservation.customer', 'details'])->latest()->paginate(15);
         $totalFnb = \App\Models\FnbOrder::sum('total_amount');
     @endphp
 
@@ -26,7 +26,7 @@
                     <td class="px-5 py-3 text-gray-400 text-xs">{{ $i + 1 }}</td>
                     <td class="px-5 py-3 font-mono text-xs font-semibold text-gray-700">#{{ $order->order_id }}</td>
                     <td class="px-5 py-3 text-gray-800">{{ $order->reservation->customer->name ?? '-' }}</td>
-                    <td class="px-5 py-3 text-gray-600 text-xs">{{ $order->details->pluck('menu.name')->implode(', ') }}</td>
+                    <td class="px-5 py-3 text-gray-600 text-xs">{{ $order->details->pluck('item_name')->implode(', ') }}</td>
                     <td class="px-5 py-3 font-medium text-gray-800">Rp {{ number_format($order->total_amount, 0, ',', '.') }}</td>
                     <td class="px-5 py-3"><x-status-badge :status="$order->status" /></td>
                 </tr>

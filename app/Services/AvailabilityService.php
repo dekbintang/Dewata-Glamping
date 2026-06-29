@@ -13,15 +13,7 @@ class AvailabilityService
      */
     public function getAvailableUnits(string $checkIn, string $checkOut, string $unitType = null): Collection
     {
-        $bookedUnitIds = Reservation::where('status', '!=', 'cancelled')
-            ->where(function ($query) use ($checkIn, $checkOut) {
-                $query->whereBetween('check_in_date', [$checkIn, $checkOut])
-                    ->orWhereBetween('check_out_date', [$checkIn, $checkOut])
-                    ->orWhere(function ($q) use ($checkIn, $checkOut) {
-                        $q->where('check_in_date', '<=', $checkIn)
-                            ->where('check_out_date', '>=', $checkOut);
-                    });
-            })->pluck('unit_id');
+        $bookedUnitIds = $this->getBookedUnitIds($checkIn, $checkOut);
 
         $query = UnitGlamping::whereNotIn('unit_id', $bookedUnitIds)
             ->where('status', 'available');
@@ -31,5 +23,50 @@ class AvailabilityService
         }
 
         return $query->get();
+    }
+
+    /**
+     * Check if a specific unit is still available for the given date range.
+     * Used inside DB::transaction with lockForUpdate to prevent double booking.
+     */
+    public function isUnitAvailable(int $unitId, string $checkIn, string $checkOut): bool
+    {
+        // Check unit exists and is bookable
+        $unit = UnitGlamping::where('unit_id', $unitId)
+            ->whereIn('status', ['available', 'occupied']) // occupied units can still be booked for future dates
+            ->first();
+
+        if (!$unit) {
+            return false;
+        }
+
+        // Check no overlapping reservations (with pessimistic lock)
+        $conflicting = Reservation::where('unit_id', $unitId)
+            ->whereNotIn('status', ['cancelled', 'checked_out'])
+            ->lockForUpdate() // Pessimistic lock to prevent race conditions
+            ->where(function ($query) use ($checkIn, $checkOut) {
+                $query->where(function ($q) use ($checkIn, $checkOut) {
+                    // New booking starts during existing booking
+                    $q->where('check_in_date', '<', $checkOut)
+                      ->where('check_out_date', '>', $checkIn);
+                });
+            })
+            ->exists();
+
+        return !$conflicting;
+    }
+
+    /**
+     * Get unit IDs that are booked for the given date range
+     */
+    private function getBookedUnitIds(string $checkIn, string $checkOut): array
+    {
+        return Reservation::whereNotIn('status', ['cancelled', 'checked_out'])
+            ->where(function ($query) use ($checkIn, $checkOut) {
+                $query->where('check_in_date', '<', $checkOut)
+                      ->where('check_out_date', '>', $checkIn);
+            })
+            ->pluck('unit_id')
+            ->toArray();
     }
 }

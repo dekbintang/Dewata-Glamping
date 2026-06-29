@@ -1,11 +1,14 @@
-<aside class="w-[260px] bg-white flex flex-col flex-shrink-0 h-screen overflow-hidden">
+<aside class="w-[260px] bg-[#f6f8fc] flex flex-col flex-shrink-0 h-screen overflow-hidden">
     <!-- Logo Area -->
     <div class="h-16 flex items-center px-6 flex-shrink-0">
-        <a href="{{ route('erp.dashboard') }}" class="flex items-center gap-2">
-            <div class="w-8 h-8 flex items-center justify-center">
-                <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.8l6.2 12.2H5.8L12 5.8z"/></svg>
+        <a href="{{ route('erp.dashboard') }}" class="flex items-center gap-2.5">
+            <div class="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
+                <svg class="w-4.5 h-4.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
             </div>
-            <span class="text-[22px] font-normal text-gray-700 tracking-tight">GlampERP</span>
+            <div>
+                <span class="text-[15px] font-bold text-gray-800 leading-none block">Dewata Glamping</span>
+                <span class="text-[10px] text-gray-400 uppercase tracking-wider">ERP System</span>
+            </div>
         </a>
     </div>
 

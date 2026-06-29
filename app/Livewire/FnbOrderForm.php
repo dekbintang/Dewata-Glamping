@@ -86,10 +86,11 @@ class FnbOrderForm extends Component
 
             foreach ($this->cart as $menuId => $item) {
                 OrderDetail::create([
-                    'order_id' => $order->order_id,
-                    'menu_id' => $menuId,
-                    'quantity' => $item['qty'],
-                    'subtotal' => $item['price'] * $item['qty'],
+                    'order_id'  => $order->order_id,
+                    'item_name' => $item['name'],
+                    'price'     => $item['price'],
+                    'quantity'  => $item['qty'],
+                    'subtotal'  => $item['price'] * $item['qty'],
                 ]);
             }
         });

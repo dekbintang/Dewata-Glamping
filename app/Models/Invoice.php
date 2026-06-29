@@ -25,4 +25,12 @@ class Invoice extends Model
     {
         return $this->belongsTo(Reservation::class, 'reservation_id');
     }
+
+    /**
+     * Auto-generate invoice number from ID
+     */
+    public function getInvoiceNumberAttribute(): string
+    {
+        return 'INV-' . str_pad($this->invoice_id, 6, '0', STR_PAD_LEFT);
+    }
 }

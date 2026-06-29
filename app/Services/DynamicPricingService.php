@@ -24,6 +24,28 @@ class DynamicPricingService
     public function calculateRecommendation(int $unitId, string $date): array
     {
         $unit = UnitGlamping::findOrFail($unitId);
+        
+        // Fallback Logic: Cek apakah ada data yang cukup dalam 30 hari terakhir
+        $lastMonth = [
+            Carbon::parse($date)->subDays(30)->toDateString(),
+            Carbon::parse($date)->toDateString(),
+        ];
+        $totalReservations = Reservation::where('unit_id', $unitId)
+            ->whereBetween('check_in_date', $lastMonth)
+            ->where('status', '!=', 'cancelled')
+            ->count();
+            
+        if ($totalReservations < 3) {
+            return [
+                'score'           => 0.5,
+                'adjustment'      => 1.00,
+                'suggested_price' => $unit->base_price,
+                'criteria'        => $this->getCriteriaForUnit($unit, $date),
+                'insufficient_data' => true,
+                'message'         => 'Data historis belum cukup untuk analisis.'
+            ];
+        }
+
         $criteria = $this->getCriteriaForUnit($unit, $date);
         $normalized = $this->normalize($criteria);
         $score = $this->calculateSAW($normalized);
@@ -52,6 +74,32 @@ class DynamicPricingService
      */
     public function recommend(string $unitType, string $date): array
     {
+        $lastMonth = [
+            Carbon::parse($date)->subDays(30)->toDateString(),
+            Carbon::parse($date)->toDateString(),
+        ];
+        
+        $totalReservations = Reservation::whereHas('unit', fn($q) => $q->where('unit_type', $unitType))
+            ->whereBetween('check_in_date', $lastMonth)
+            ->where('status', '!=', 'cancelled')
+            ->count();
+            
+        $basePrice = UnitGlamping::where('unit_type', $unitType)->avg('base_price');
+            
+        if ($totalReservations < 5) {
+            return [
+                'unit_type'         => $unitType,
+                'date'              => $date,
+                'score'             => 0.5,
+                'label'             => 'Data Historis Belum Cukup',
+                'base_price'        => $basePrice,
+                'recommended_price' => $basePrice,
+                'adjustment'        => 1.00,
+                'criteria'          => $this->getCriteria($unitType, $date),
+                'insufficient_data' => true
+            ];
+        }
+
         $criteria = $this->getCriteria($unitType, $date);
         $normalized = $this->normalize($criteria);
         $score = $this->calculateSAW($normalized);

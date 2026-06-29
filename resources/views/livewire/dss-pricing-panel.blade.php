@@ -31,10 +31,17 @@
                         <td class="px-5 py-3">
                             <p class="font-medium text-gray-800">{{ $unit->unit_name }}</p>
                             <p class="text-xs text-gray-400">{{ $unit->unit_type }}</p>
+                            @if(isset($rec['insufficient_data']) && $rec['insufficient_data'])
+                                <p class="text-[10px] text-yellow-600 bg-yellow-50 inline-block px-1.5 py-0.5 rounded mt-1">Data Kurang</p>
+                            @endif
                         </td>
                         <td class="px-5 py-3 text-gray-600">Rp {{ number_format($unit->base_price, 0, ',', '.') }}</td>
                         <td class="px-5 py-3">
-                            <span class="font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">{{ number_format($rec['score'], 3) }}</span>
+                            @if(isset($rec['insufficient_data']) && $rec['insufficient_data'])
+                                <span class="font-mono text-xs bg-gray-50 border border-gray-200 text-gray-400 px-2 py-0.5 rounded" title="{{ $rec['message'] ?? 'Data historis belum memadai' }}">N/A</span>
+                            @else
+                                <span class="font-mono text-xs bg-gray-50 border border-gray-200 px-2 py-0.5 rounded">{{ number_format($rec['score'], 3) }}</span>
+                            @endif
                         </td>
                         <td class="px-5 py-3 font-medium {{ $diff > 0 ? 'text-green-600' : ($diff < 0 ? 'text-red-600' : 'text-gray-800') }}">
                             Rp {{ number_format($rec['suggested_price'], 0, ',', '.') }}
