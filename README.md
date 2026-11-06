@@ -1,59 +1,186 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div align="center">
+
+# 🏕️ Dewata Glamping (GlampERP)
+### *Integrated Hospitality Enterprise Resource Planning & Guest Booking Platform*
+
+[![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
+[![Livewire](https://img.shields.io/badge/Livewire-4.x-FB70A9?style=for-the-badge&logo=livewire&logoColor=white)](https://livewire.laravel.com)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com)
+[![Spatie RBAC](https://img.shields.io/badge/RBAC-Spatie_Permission-0052CC?style=for-the-badge&logo=shield&logoColor=white)](https://spatie.be/docs/laravel-permission)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  Platform ERP dan portal pemesanan terpadu untuk industri *hospitality* dan resor glamping. Memadukan pengalaman reservasi mandiri untuk tamu (*Guest Portal*) dengan sistem operasional resor menyeluruh (*Back-Office ERP*), meliputi manajemen front-office, F&B order, housekeeping, billing otomatis, serta *Decision Support System* (DSS).
 </p>
 
-## About Laravel
+</div>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📌 Gambaran Umum & Solusi Bisnis
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Pengelolaan resor glamping dan *boutique stay* sering kali menghadapi tantangan operasional: koordinasi manual antara bagian reservasi dan housekeeping, keterlambatan pencatatan pesanan F&B tamu, penanganan *no-show*, serta kompleksitas penagihan akhir (*checkout folio*). 
 
-## Learning Laravel
+**Dewata Glamping (GlampERP)** hadir sebagai solusi *all-in-one* yang mendigitalkan seluruh rantai operasional resor:
+1. **Self-Service Booking untuk Tamu:** Tamu dapat memilih unit, melihat ketersediaan tanggal, dan menerima kode konfirmasi instan.
+2. **Otomatisasi Operasional Front-Office:** Alur *check-in* dan *check-out* 2 langkah dengan pratinjau tagihan instan serta *scheduler* otomatis penanganan tamu *no-show*.
+3. **Penyatuan Tagihan (Consolidated Billing):** Biaya inap, pesanan makanan/minuman (F&B), dan biaya tambahan terintegrasi dalam satu invoice resmi berbasis PDF.
+4. **Keamanan & Tata Kelola Berbasis Peran:** Akses bertingkat dengan 6 peran organisasi (Admin, Front Office, F&B Staff, Housekeeping, Finance, Customer).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🌟 Modul & Fitur Utama
 
-## Laravel Sponsors
+```
+                      ┌──────────────────────────────────────┐
+                      │    Dewata Glamping System Hub        │
+                      └──────────────────┬───────────────────┘
+                                         │
+        ┌────────────────────────────────┴────────────────────────────────┐
+        ▼                                                                 ▼
+┌───────────────────────────────┐                       ┌──────────────────────────────────┐
+│      PUBLIC GUEST PORTAL      │                       │          ENTERPRISE ERP          │
+├───────────────────────────────┤                       ├──────────────────────────────────┤
+│ • Katalog Unit & Fasilitas    │                       │ • Front Office (Check-in/out)    │
+│ • Real-time Availability      │                       │ • F&B Order & Room Service       │
+│ • Instant Booking Form        │                       │ • Housekeeping & Room Status     │
+│ • Kode Unik Konfirmasi        │                       │ • Billing & PDF Invoice (DomPDF) │
+│ • Cek Status Reservasi        │                       │ • Decision Support System (DSS)  │
+│                               │                       │ • CRM & Catatan Preferensi Tamu  │
+└───────────────────────────────┘                       └──────────────────────────────────┘
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 1. 🌐 Public Customer Portal
+* **Katalog Unit:** Pratinjau unit glamping lengkap dengan spesifikasi, kapasitas, dan galeri foto.
+* **Sistem Reservasi Cerdas:** Pemilihan tanggal menginap dengan validasi ketersediaan unit secara dinamis.
+* **Cek Reservasi Mandiri:** Tamu dapat mengecek status pemesanan mereka kapan saja cukup dengan kode pemesanan.
 
-### Premium Partners
+### 2. 🛎️ Front Office & Transaksi
+* **Alur Check-in 2 Langkah:** Dilengkapi fitur *preview* rincian tamu dan deposit sebelum status kamar diaktifkan.
+* **Check-out Terintegrasi:** Rekonsiliasi otomatis seluruh pengeluaran tamu (sewa unit + pesanan F&B).
+* **Automated No-Show Cron Scheduler:** Sistem secara otomatis menjalankan *background task* setiap pukul 23:59 untuk mendeteksi reservasi yang batal/tidak hadir (`reservations:handle-noshow`).
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 3. 🍽️ Food & Beverage (F&B) Management
+* Pemesanan menu makanan & minuman yang langsung tercatat ke dalam tagihan kamar tamu yang sedang menginap (*in-house folio*).
+* Manajemen stok menu dan status pemesanan (Diproses, Siap, Terkirim).
 
-## Contributing
+### 4. 🧹 Housekeeping & Unit Maintenance
+* Pengelolaan siklus kebersihan unit (Tersedia, Terisi, Kotor / Perlu Dibersihkan, Dalam Pemeliharaan).
+* Koordinasi langsung dengan front-office saat kamar telah siap ditempati.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 5. 💰 Finance, Billing & Invoicing
+* Pembuatan **Invoice PDF resmi** dengan sekali klik memanfaatkan `barryvdh/laravel-dompdf`.
+* Pencatatan metode pembayaran fleksibel (Transfer Bank, QRIS, Tunai, Kartu Kredit).
+* Laporan keuangan berkala: Laporan Okupansi Kamar, Laporan Pendapatan, dan Performa Penjualan F&B.
 
-## Code of Conduct
+### 6. 🧠 Decision Support System (DSS) & CRM
+* Analisis data okupansi dan tren musiman untuk membantu manajemen menentukan strategi tarif kamar.
+* Riwayat loyalitas tamu beserta modul catatan preferensi (*Guest Preference Notes*).
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## 👥 Role-Based Access Control (RBAC)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Aplikasi menerapkan pembatasan hak akses ketat menggunakan paket **Spatie Laravel Permission**:
 
-## License
+| Role | Akses Modul | Tanggung Jawab Utama |
+| :--- | :--- | :--- |
+| **Admin** | Seluruh Sistem | Konfigurasi sistem, tarif, hak akses staff, DSS & laporan eksekutif. |
+| **Front Office** | Reservasi, Check-in/out, Tamu | Pelayanan tamu, validasi reservasi, koordinasi unit. |
+| **F&B Staff** | Menu & Pesanan F&B | Input dan pemrosesan pesanan makanan/minuman kamar. |
+| **Housekeeping** | Jadwal Kebersihan Unit | Update status kebersihan dan kesiapan unit glamping. |
+| **Finance** | Billing & Laporan Keuangan | Verifikasi pembayaran, penerbitan invoice PDF, audit pendapatan. |
+| **Customer** | Portal Tamu & Profil Pribadi | Pemesanan mandiri dan riwayat kunjungan. |
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## 🛠️ Tech Stack & Arsitektur
+
+* **Framework:** [Laravel 12](https://laravel.com/)
+* **Frontend / UI:** [Livewire 4](https://livewire.laravel.com/), [Tailwind CSS 3](https://tailwindcss.com/), [Blade Templates](https://laravel.com/docs/blade)
+* **Autentikasi & Otorisasi:** Laravel Breeze & [Spatie Laravel-Permission 6](https://spatie.be/docs/laravel-permission)
+* **Dokumentasi & Dokumen:** [Barryvdh Laravel DomPDF](https://github.com/barryvdh/laravel-dompdf)
+* **Database:** MySQL 8.0 / MariaDB
+* **Build Tool:** Vite
+
+---
+
+## ⚡ Panduan Instalasi Lokal
+
+### Prasyarat
+* PHP >= 8.2 (ekstensi aktif: `pdo_mysql`, `mbstring`, `openssl`, `gd`)
+* Composer >= 2.5
+* Node.js >= 18.x & NPM
+* MySQL / MariaDB Server
+
+### Langkah-Langkah
+
+1. **Clone Repositori:**
+   ```bash
+   git clone https://github.com/dekbintang/Dewata-Glamping.git
+   cd Dewata-Glamping
+   ```
+
+2. **Instal Dependensi PHP & JavaScript:**
+   ```bash
+   composer install
+   npm install
+   ```
+
+3. **Konfigurasi Environment:**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+   Sesuaikan koneksi database Anda pada file `.env`:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=dewata_glamping
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
+
+4. **Jalankan Migrasi & Seeder Demo:**
+   ```bash
+   php artisan migrate --seed
+   ```
+   *Seeder akan secara otomatis mengisi peran, akun demo, unit glamping, dan menu makanan.*
+
+5. **Kompilasi Aset Frontend & Jalankan Server:**
+   ```bash
+   npm run build
+   php artisan serve
+   ```
+   Akses aplikasi di browser pada: `http://localhost:8000`
+
+---
+
+## 🔑 Akun Uji Coba (Demo Accounts)
+
+Semua akun demo bawaan menggunakan password yang seragam: `password`
+
+| Role | Email Login | Password |
+| :--- | :--- | :--- |
+| **Super Admin** | `admin@glamperp.com` | `password` |
+| **Front Office** | `frontoffice@glamperp.com` | `password` |
+| **Finance Officer** | `finance@glamperp.com` | `password` |
+| **F&B Staff** | `fnb@glamperp.com` | `password` |
+| **Housekeeping** | `housekeeping@glamperp.com` | `password` |
+| **Customer** | `customer@glamperp.com` | `password` |
+
+---
+
+## 👨‍💻 Pengembang
+
+**I Kadek Bintang Adi Bimantara**  
+*Program Studi Teknologi Informasi — Universitas Udayana*  
+* [GitHub Profile](https://github.com/dekbintang)
+* [Instagram](https://instagram.com/ikadek_bintang)
+
+---
+
+## 📄 Lisensi
+Proyek ini dilisensikan di bawah [Lisensi MIT](LICENSE). Bebas digunakan dan dikembangkan untuk keperluan riset dan akademis.
