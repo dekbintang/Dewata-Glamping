@@ -173,14 +173,5 @@ Semua akun demo bawaan menggunakan password yang seragam: `password`
 
 ---
 
-## 👨‍💻 Pengembang
-
-**I Kadek Bintang Adi Bimantara**  
-*Program Studi Teknologi Informasi — Universitas Udayana*  
-* [GitHub Profile](https://github.com/dekbintang)
-* [Instagram](https://instagram.com/ikadek_bintang)
-
----
-
 ## 📄 Lisensi
 Proyek ini dilisensikan di bawah [Lisensi MIT](LICENSE). Bebas digunakan dan dikembangkan untuk keperluan riset dan akademis.
